@@ -33,4 +33,5 @@ Você também pode abrir uma *Issue* diretamente aqui no GitHub se preferir.
 
 ## 📄 Licença
 
-Este projeto está licenciado sob a **Licença MIT** - sinta-se livre para usar, modificar e distribuir. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está licenciado sob a **Licença MIT** - sinta-se livre para usar, modificar e distribuir. 
+Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
