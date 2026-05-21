@@ -1,42 +1,37 @@
 /* ============================================================
-           CSS CUSTOM PROPERTIES
-           ============================================================ */
+   CSS CUSTOM PROPERTIES
+   ============================================================ */
 :root {
-    --glass-bg: rgba(10, 15, 35, 0.18);
+    --glass-bg:     rgba(10, 15, 35, 0.18);
     --glass-border: rgba(255, 255, 255, 0.13);
-    --glass-blur: blur(16px);
-    --text-main: #ffffff;
-    --text-muted: rgba(255, 255, 255, 0.65);
-    --accent: #ff6b35;
-    --accent-soft: rgba(255, 107, 53, 0.18);
-    --danger-soft: rgba(255, 50, 50, 0.18);
-    --danger-mid: rgba(255, 50, 50, 0.35);
-    --danger-high: rgba(255, 50, 50, 0.45);
-    --radius-card: 16px;
-    --radius-sm: 8px;
+    --glass-blur:   blur(16px);
+    --text-main:    #ffffff;
+    --text-muted:   rgba(255, 255, 255, 0.65);
+    --accent:       #ff6b35;
+    --accent-soft:  rgba(255, 107, 53, 0.18);
+    --danger-soft:  rgba(255, 50, 50, 0.18);
+    --danger-mid:   rgba(255, 50, 50, 0.35);
+    --danger-high:  rgba(255, 50, 50, 0.45);
+    --radius-card:  16px;
+    --radius-sm:    8px;
 }
 
 /* ============================================================
-           RESET & BASE
-           ============================================================ */
-*,
-*::before,
-*::after {
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* AMO Compliance: Fallback local para fontes. Se quiser DM Sans, adicione o .woff2 na pasta da extensão e declare @font-face */
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-/* O restante do seu CSS permanece inalterado abaixo desta linha... */
-
 body {
-    height: 100vh;
     width: 100vw;
     overflow: hidden;
     color: var(--text-main);
     background-color: #050814;
+    background-image: url('default_background.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -45,8 +40,8 @@ body {
 }
 
 /* ============================================================
-           VIDEO BACKGROUND
-           ============================================================ */
+   VIDEO BACKGROUND
+   ============================================================ */
 #bgVideo {
     position: fixed;
     inset: 0;
@@ -63,14 +58,14 @@ body::before {
     content: '';
     position: fixed;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+    background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
     pointer-events: none;
     z-index: -1;
 }
 
 /* ============================================================
-           LAYOUT CONTAINER
-           ============================================================ */
+   LAYOUT CONTAINER
+   ============================================================ */
 .container {
     position: relative;
     z-index: 1;
@@ -79,54 +74,57 @@ body::before {
     justify-content: center;
     height: 100%;
     padding: 20px 8% 60px;
-    /* bottom padding leaves room for footer */
     max-width: 1500px;
     overflow-y: auto;
 }
 
 /* ============================================================
-           HEADER — CLOCK, GREETING, DATE
-           ============================================================ */
+   HEADER — CLOCK, GREETING, DATE
+   ============================================================ */
 .header {
-    margin-bottom: 32px;
-    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+    margin-bottom: 40px;
     max-width: 100%;
 }
 
 .time {
-    font-size: 5rem;
-    font-weight: 300;
+    font-size: 6.5rem;
+    font-weight: 200;
     line-height: 1;
-    padding: 0 3px;
-    background: rgba(26, 36, 40, 0.09);
-    max-width: max-content;
-    border-radius: 5px;
+    padding: 0;
     font-variant-numeric: tabular-nums;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
 .greeting {
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin-top: 5px;
-    font-style: italic;
-    opacity: 0.9;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 100%;
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-top: 12px;
+      /*! color: #ff6b356b; */
+      letter-spacing: 0.03em;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: #061829;
+      max-width: max-content;
+      padding: 1px 6px;
+      border-radius: 10px;
 }
 
 .date {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--text-muted);
-    margin-top: 3px;
-    letter-spacing: 0.02em;
+    margin-top: 6px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
 
 /* ============================================================
-           WEATHER WIDGET
-           ============================================================ */
+   WEATHER WIDGET
+   ============================================================ */
 .weather-display {
     position: absolute;
     top: 25px;
@@ -137,7 +135,7 @@ body::before {
     display: none;
     align-items: center;
     gap: 8px;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
     background: rgba(15, 20, 40, 0.22);
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -145,17 +143,17 @@ body::before {
     padding: 4px 12px;
     border-radius: var(--radius-sm);
     z-index: 50;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* ============================================================
-           SEARCH BAR
-           ============================================================ */
+   SEARCH BAR
+   ============================================================ */
 .search-wrapper {
     position: relative;
     width: 100%;
     max-width: 680px;
-    margin-bottom: 28px;
+    margin-bottom: 32px;
     z-index: 10;
 }
 
@@ -168,7 +166,7 @@ body::before {
     border: 2px solid var(--glass-border);
     border-radius: 50px;
     padding: 12px 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
     width: 100%;
     transition: all 0.25s;
     position: relative;
@@ -177,8 +175,8 @@ body::before {
 
 .search-container:focus-within {
     background: rgba(10, 15, 40, 0.45);
-    border-color: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 107, 53, 0.18);
+    border-color: rgba(255,255,255,0.25);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.35), 0 0 0 1px rgba(255,107,53,0.18);
 }
 
 .search-engine-badge {
@@ -200,15 +198,8 @@ body::before {
     cursor: pointer;
 }
 
-.search-engine-badge:hover {
-    background: rgba(255, 107, 53, 0.35);
-}
-
-.search-engine-badge svg {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-}
+.search-engine-badge:hover { background: rgba(255, 107, 53, 0.35); }
+.search-engine-badge svg   { width: 14px; height: 14px; flex-shrink: 0; }
 
 .search-container input {
     background: transparent;
@@ -221,9 +212,7 @@ body::before {
     font-family: inherit;
 }
 
-.search-container input::placeholder {
-    color: var(--text-muted);
-}
+.search-container input::placeholder { color: var(--text-muted); }
 
 .search-submit-btn {
     opacity: 0.6;
@@ -238,13 +227,11 @@ body::before {
     flex-shrink: 0;
 }
 
-.search-submit-btn:hover {
-    opacity: 1;
-}
+.search-submit-btn:hover { opacity: 1; }
 
 /* ============================================================
-           SEARCH SUGGESTIONS DROPDOWN
-           ============================================================ */
+   SEARCH SUGGESTIONS DROPDOWN
+   ============================================================ */
 .suggestions-dropdown {
     position: absolute;
     top: 100%;
@@ -259,20 +246,14 @@ body::before {
     overflow: hidden;
     display: none;
     flex-direction: column;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.35);
     margin-top: -22px;
     padding-top: 22px;
     z-index: 1;
 }
 
-.search-wrapper.active .search-container {
-    border-radius: 22px 22px 0 0;
-    background: rgba(10, 15, 40, 0.92);
-}
-
-.search-wrapper.active .suggestions-dropdown {
-    display: flex;
-}
+.search-wrapper.active .search-container   { border-radius: 22px 22px 0 0; background: rgba(10,15,40,0.92); }
+.search-wrapper.active .suggestions-dropdown { display: flex; }
 
 .suggestion-item {
     padding: 9px 22px;
@@ -286,14 +267,9 @@ body::before {
 }
 
 .suggestion-item:hover,
-.suggestion-item.selected {
-    background: rgba(255, 255, 255, 0.08);
-}
+.suggestion-item.selected { background: rgba(255,255,255,0.08); }
 
-.suggestion-item:last-child {
-    padding-bottom: 14px;
-    border-radius: 0 0 24px 24px;
-}
+.suggestion-item:last-child { padding-bottom: 14px; border-radius: 0 0 24px 24px; }
 
 .suggestion-icon {
     opacity: 0.5;
@@ -322,13 +298,13 @@ body::before {
 
 .suggestions-separator {
     height: 1px;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255,255,255,0.07);
     margin: 2px 22px;
 }
 
 /* ============================================================
-           CATEGORIES
-           ============================================================ */
+   CATEGORIES
+   ============================================================ */
 .categories-container {
     display: flex;
     flex-direction: column;
@@ -339,10 +315,10 @@ body::before {
 .category-block {
     background: rgba(10, 15, 35, 0.12);
     backdrop-filter: var(--glass-blur);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius-card);
     padding: 14px 18px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
 }
 
 .category-header {
@@ -384,8 +360,8 @@ body::before {
     display: flex;
     align-items: center;
     gap: 9px;
-    background: rgba(255, 255, 255, 0.07);
-    border: 2px solid rgba(255, 255, 255, 0.11);
+    background: rgba(255,255,255,0.07);
+    border: 2px solid rgba(255,255,255,0.11);
     border-radius: 10px;
     padding: 8px 16px 8px 10px;
     text-decoration: none;
@@ -397,8 +373,8 @@ body::before {
 }
 
 .shortcut-btn:hover {
-    background: rgba(255, 255, 255, 0.14);
-    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255,255,255,0.14);
+    border-color: rgba(255,255,255,0.22);
     transform: translateY(-1px);
 }
 
@@ -420,12 +396,11 @@ body::before {
 }
 
 /* ============================================================
-           SETTINGS BUTTON
-           ============================================================ */
+   SETTINGS BUTTON
+   ============================================================ */
 .settings-btn {
     position: fixed;
     bottom: 46px;
-    /* raised to sit above footer */
     right: 20px;
     width: 36px;
     height: 36px;
@@ -441,7 +416,7 @@ body::before {
     cursor: pointer;
     transition: background 0.3s, transform 0.3s, opacity 0.3s;
     z-index: 100;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     opacity: 0.6;
 }
 
@@ -452,36 +427,35 @@ body::before {
 }
 
 /* ============================================================
-           FOOTER — FIREFOX VERSION
-           ============================================================ */
+   FOOTER — FIREFOX VERSION
+   ============================================================ */
 #glasshub-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 90;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    padding: 0 20px;
-    background: rgba(5, 8, 20, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.38);
-    letter-spacing: 0.03em;
-    user-select: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 20px;
+  background: rgba(5, 8, 20, 0.55);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.38);
+  letter-spacing: 0.03em;
+  user-select: none;
 }
 
 #glasshub-footer .footer-brand {
-    font-weight: 600;
-    color: rgba(255, 107, 53, 0.65);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255, 107, 53, 0.65);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.58rem;
 }
 
 #glasshub-footer .footer-sep {
@@ -510,12 +484,12 @@ body::before {
 }
 
 /* ============================================================
-           MODAL
-           ============================================================ */
+   MODAL
+   ============================================================ */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.65);
+    background: rgba(0,0,0,0.65);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
     display: none;
@@ -526,10 +500,7 @@ body::before {
     transition: opacity 0.25s;
 }
 
-.modal-overlay.active {
-    display: flex;
-    opacity: 1;
-}
+.modal-overlay.active { display: flex; opacity: 1; }
 
 .modal-content {
     background: rgba(10, 15, 38, 0.95);
@@ -543,27 +514,16 @@ body::before {
     max-height: 88vh;
     overflow-y: auto;
     color: var(--text-main);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
     transform: translateY(16px);
     transition: transform 0.25s;
 }
 
-.modal-overlay.active .modal-content {
-    transform: translateY(0);
-}
+.modal-overlay.active .modal-content { transform: translateY(0); }
 
-.modal-content::-webkit-scrollbar {
-    width: 5px;
-}
-
-.modal-content::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.18);
-    border-radius: 10px;
-}
+.modal-content::-webkit-scrollbar       { width: 5px; }
+.modal-content::-webkit-scrollbar-track { background: transparent; }
+.modal-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 10px; }
 
 .modal-header {
     display: flex;
@@ -591,14 +551,9 @@ body::before {
     line-height: 1;
 }
 
-.modal-close:hover {
-    opacity: 1;
-}
+.modal-close:hover { opacity: 1; }
 
-.modal-section {
-    margin-bottom: 22px;
-}
-
+.modal-section          { margin-bottom: 22px; }
 .modal-section h3 {
     margin-bottom: 12px;
     font-size: 0.74rem;
@@ -609,12 +564,12 @@ body::before {
 }
 
 /* ============================================================
-           MODAL — FORM CONTROLS
-           ============================================================ */
+   MODAL — FORM CONTROLS
+   ============================================================ */
 .cat-icon-input {
     width: 140px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border: 1px solid var(--glass-border);
     color: white;
     padding: 7px 6px;
@@ -627,7 +582,7 @@ body::before {
 
 .cat-name-input {
     flex: 1;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border: 1px solid var(--glass-border);
     color: white;
     padding: 7px 10px;
@@ -639,9 +594,7 @@ body::before {
 }
 
 .cat-name-input:focus,
-.cat-icon-input:focus {
-    border-color: rgba(255, 255, 255, 0.45);
-}
+.cat-icon-input:focus { border-color: rgba(255,255,255,0.45); }
 
 .delete-cat-btn {
     background: var(--danger-soft);
@@ -659,13 +612,11 @@ body::before {
     font-size: 0.85rem;
 }
 
-.delete-cat-btn:hover {
-    background: var(--danger-high);
-}
+.delete-cat-btn:hover { background: var(--danger-high); }
 
 .category-editor-block {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
     border-radius: 12px;
     padding: 14px;
     margin-bottom: 14px;
@@ -686,7 +637,7 @@ body::before {
 }
 
 .link-edit-row input[type="text"] {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border: 1px solid var(--glass-border);
     color: white;
     padding: 8px 10px;
@@ -697,17 +648,10 @@ body::before {
     transition: border-color 0.2s;
 }
 
-.link-edit-row input[type="text"]:focus {
-    border-color: rgba(255, 255, 255, 0.45);
-}
+.link-edit-row input[type="text"]:focus { border-color: rgba(255,255,255,0.45); }
 
-.link-edit-row input.name-input {
-    flex: 1;
-}
-
-.link-edit-row input.url-input {
-    flex: 2;
-}
+.link-edit-row input.name-input { flex: 1; }
+.link-edit-row input.url-input  { flex: 2; }
 
 .icon-upload-wrap {
     position: relative;
@@ -719,7 +663,7 @@ body::before {
     width: 36px;
     height: 36px;
     border-radius: var(--radius-sm);
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border: 1px solid var(--glass-border);
     color: var(--text-muted);
     display: flex;
@@ -733,9 +677,9 @@ body::before {
 }
 
 .icon-upload-btn:hover {
-    border-color: rgba(255, 255, 255, 0.45);
+    border-color: rgba(255,255,255,0.45);
     color: white;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255,255,255,0.05);
 }
 
 .icon-upload-btn img {
@@ -747,7 +691,7 @@ body::before {
 
 .greeting-input {
     flex: 1;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border: 1px solid var(--glass-border);
     color: white;
     padding: 8px 10px;
@@ -758,9 +702,7 @@ body::before {
     transition: border-color 0.2s;
 }
 
-.greeting-input:focus {
-    border-color: rgba(255, 255, 255, 0.45);
-}
+.greeting-input:focus { border-color: rgba(255,255,255,0.45); }
 
 .delete-btn {
     background: var(--danger-soft);
@@ -778,12 +720,10 @@ body::before {
     font-size: 0.85rem;
 }
 
-.delete-btn:hover {
-    background: var(--danger-high);
-}
+.delete-btn:hover { background: var(--danger-high); }
 
 .add-btn {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255,255,255,0.08);
     border: 1px solid var(--glass-border);
     color: white;
     padding: 7px 13px;
@@ -795,9 +735,7 @@ body::before {
     font-family: inherit;
 }
 
-.add-btn:hover {
-    background: rgba(255, 255, 255, 0.16);
-}
+.add-btn:hover { background: rgba(255,255,255,0.16); }
 
 .drag-handle {
     background: none;
@@ -811,17 +749,10 @@ body::before {
     flex-shrink: 0;
 }
 
-.drag-handle:active {
-    cursor: grabbing;
-}
+.drag-handle:active { cursor: grabbing; }
 
-.link-edit-row.dragging {
-    opacity: 0.45;
-}
-
-.link-edit-row.drag-over {
-    border-top: 2px dashed rgba(255, 255, 255, 0.65);
-}
+.link-edit-row.dragging  { opacity: 0.45; }
+.link-edit-row.drag-over { border-top: 2px dashed rgba(255,255,255,0.65); }
 
 .save-btn {
     background: rgba(255, 107, 53, 0.55);
@@ -838,12 +769,10 @@ body::before {
     font-family: inherit;
 }
 
-.save-btn:hover {
-    background: rgba(255, 107, 53, 0.78);
-}
+.save-btn:hover { background: rgba(255, 107, 53, 0.78); }
 
 .styled-select {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0,0,0,0.3);
     border: 1px solid var(--glass-border);
     color: white;
     padding: 8px 12px;
@@ -859,22 +788,11 @@ body::before {
     transition: border-color 0.2s;
 }
 
-.styled-select:focus {
-    border-color: rgba(255, 255, 255, 0.45);
-}
-
-.styled-select option {
-    background: #0a0f23;
-    color: white;
-}
+.styled-select:focus  { border-color: rgba(255,255,255,0.45); }
+.styled-select option { background: #0a0f23; color: white; }
 
 /* ============================================================
-           UTILITY
-           ============================================================ */
-.show-flex {
-    display: flex !important;
-}
-
-.hide {
-    display: none !important;
-}
+   UTILITY
+   ============================================================ */
+.show-flex { display: flex !important; }
+.hide      { display: none  !important; }
