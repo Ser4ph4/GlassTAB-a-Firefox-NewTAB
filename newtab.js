@@ -400,7 +400,6 @@ function renderCategories() {
     const cats = loadCategories();
     DOM.categoriesContainer.textContent = '';
 
-    // Performance optimization: DocumentFragment
     const fragment = document.createDocumentFragment();
 
     cats.forEach(cat => {
@@ -446,6 +445,44 @@ function renderCategories() {
     });
 
     DOM.categoriesContainer.appendChild(fragment);
+
+    // ← overflow badge: roda APÓS o fragment estar no DOM
+    requestAnimationFrame(() => {
+        DOM.categoriesContainer.querySelectorAll('.category-links').forEach(linksDiv => {
+            const btns   = [...linksDiv.querySelectorAll('.shortcut-btn')];
+            const ROW_H  = 38;
+            const GAP    = 5;
+            const maxH   = ROW_H * 2 + GAP;
+
+            const hiddenBtns = btns.filter(btn => btn.offsetTop > maxH);
+            if (!hiddenBtns.length) return;
+
+            hiddenBtns.forEach(btn => btn.style.display = 'none');
+
+            let expanded = false;
+            const badge  = document.createElement('span');
+            badge.className   = 'overflow-badge';
+            badge.textContent = `+${hiddenBtns.length}`;
+            badge.title       = 'Expandir';
+
+            badge.addEventListener('click', () => {
+                expanded = !expanded;
+                if (expanded) {
+                    hiddenBtns.forEach(btn => btn.style.display = '');
+                    badge.textContent = '−';
+                    badge.title       = 'Recolher';
+                    linksDiv.style.maxHeight = 'none';
+                } else {
+                    hiddenBtns.forEach(btn => btn.style.display = 'none');
+                    badge.textContent = `+${hiddenBtns.length}`;
+                    badge.title       = 'Expandir';
+                    linksDiv.style.maxHeight = '';
+                }
+            });
+
+            linksDiv.appendChild(badge);
+        });
+    });
 }
 
 function loadGreetings() {

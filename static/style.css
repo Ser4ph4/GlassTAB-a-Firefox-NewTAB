@@ -2,7 +2,7 @@
  * @Author: Ser4ph4
  * @Date: 2026-05-20 09:06:35
  * @LastEditors: Ser4ph4
- * @LastEditTime: 2026-06-05 02:40:52
+ * @LastEditTime: 2026-06-05 10:20:05
  */
 /* ============================================================
    CSS PROPERTIES
@@ -80,10 +80,12 @@ body::before {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100%;
-    padding: 20px 8% 60px;
+    height: 100vh;
+    padding: 11px 10% 70px;
     max-width: 1500px;
     overflow: hidden;
+    height: 100vh;
+    padding: 11px 10% 70px;
 }
 
 /* ============================================================
@@ -343,8 +345,24 @@ body::before {
 .categories-container {
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 12px;
     max-width: max-content;
+    margin-bottom: 14px;
+}
+
+.overflow-badge {
+    display: inline-flex;
+    align-items: center;
+    height: 38px;
+    padding: 0 14px;
+    background: rgba(255, 107, 53, 0.18);
+    border: 2px solid rgba(255, 107, 53, 0.3);
+    border-radius: 10px;
+    color: #ffad8a;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
 }
 
 .category-block {
@@ -387,18 +405,22 @@ body::before {
 .category-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 5px;
+    align-items: center;
+    max-height: calc(38px * 2 + 5px);
+    overflow: hidden;
 }
 
 .shortcut-btn {
     position: relative;
     display: flex;
     align-items: center;
+    height: 38px;
     gap: 9px;
     background: rgba(255, 255, 255, 0.07);
     border: 2px solid rgba(255, 255, 255, 0.11);
     border-radius: 10px;
-    padding: 8px 16px 8px 10px;
+    padding: 0 16px 0 10px;
     text-decoration: none;
     color: var(--text-main);
     font-size: 0.89rem;
