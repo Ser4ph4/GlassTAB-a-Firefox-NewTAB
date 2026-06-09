@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "GlassTAB",
-  "version": "1.3",
+  "version": "1.4",
   "description": "A customizable, high-performance new tab extension with clean and fast glassmorphism design :)",
   "chrome_url_overrides": {
     "newtab": "newtab.html"
