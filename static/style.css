@@ -2,7 +2,7 @@
  * @Author: Ser4ph4
  * @Date: 2026-05-20 09:06:35
  * @LastEditors: Ser4ph4
- * @LastEditTime: 2026-06-09 12:06:23
+ * @LastEditTime: 2026-06-09 12:30:47
  */
 /* ============================================================
    CSS PROPERTIES
@@ -346,7 +346,7 @@ body::before {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    max-width: max-content;
+    width: 100%;
     margin-bottom: 14px;
 }
 
@@ -363,6 +363,7 @@ body::before {
     font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .category-block {
@@ -372,6 +373,7 @@ body::before {
     border-radius: var(--radius-card);
     padding: 14px 18px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+    width: 100%;
 }
 
 .category-header {
@@ -407,7 +409,8 @@ body::before {
     flex-wrap: wrap;
     gap: 5px;
     align-items: center;
-    max-height: calc(38px * 2 + 5px);
+    max-height: 38px;
+    /* Trava estritamente em 1 linha por padrão */
     overflow: hidden;
 }
 

@@ -446,42 +446,69 @@ function renderCategories() {
 
     DOM.categoriesContainer.appendChild(fragment);
 
-    // ← overflow badge: roda APÓS o fragment estar no DOM
-    requestAnimationFrame(() => {
-        DOM.categoriesContainer.querySelectorAll('.category-links').forEach(linksDiv => {
-            const btns   = [...linksDiv.querySelectorAll('.shortcut-btn')];
-            const ROW_H  = 38;
-            const GAP    = 5;
-            const maxH   = ROW_H * 2 + GAP;
+    // Executa o cálculo dinâmico de overflow
+    requestAnimationFrame(updateAllOverflows);
+}
 
-            const hiddenBtns = btns.filter(btn => btn.offsetTop > maxH);
-            if (!hiddenBtns.length) return;
+// ============================================================
+// CÁLCULO DINÂMICO DE OVERFLOW (Baseado em Linha Real Dinâmica)
+// ============================================================
+function updateAllOverflows() {
+    DOM.categoriesContainer.querySelectorAll('.category-links').forEach(linksDiv => {
+        const btns = [...linksDiv.querySelectorAll('.shortcut-btn')];
+        if (!btns.length) return;
 
-            hiddenBtns.forEach(btn => btn.style.display = 'none');
+        let badge = linksDiv.querySelector('.overflow-badge');
+        if (!badge) {
+            badge = document.createElement('span');
+            badge.className = 'overflow-badge';
+            badge.title = 'Expandir';
+            linksDiv.appendChild(badge);
 
-            let expanded = false;
-            const badge  = document.createElement('span');
-            badge.className   = 'overflow-badge';
-            badge.textContent = `+${hiddenBtns.length}`;
-            badge.title       = 'Expandir';
-
-            badge.addEventListener('click', () => {
-                expanded = !expanded;
-                if (expanded) {
-                    hiddenBtns.forEach(btn => btn.style.display = '');
+            badge.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isExpanded = badge.getAttribute('data-expanded') === 'true';
+                if (!isExpanded) {
+                    btns.forEach(btn => btn.style.display = '');
                     badge.textContent = '−';
-                    badge.title       = 'Recolher';
+                    badge.title = 'Recolher';
+                    badge.setAttribute('data-expanded', 'true');
                     linksDiv.style.maxHeight = 'none';
                 } else {
-                    hiddenBtns.forEach(btn => btn.style.display = 'none');
-                    badge.textContent = `+${hiddenBtns.length}`;
-                    badge.title       = 'Expandir';
+                    badge.setAttribute('data-expanded', 'false');
                     linksDiv.style.maxHeight = '';
+                    updateAllOverflows();
                 }
             });
+        }
 
-            linksDiv.appendChild(badge);
-        });
+        if (badge.getAttribute('data-expanded') === 'true') return;
+
+        // Torna visível temporariamente para medir o posicionamento real do navegador
+        btns.forEach(btn => btn.style.display = '');
+        badge.style.display = 'none';
+
+        // Pega a altura exata do primeiro botão do bloco como linha de base (Independe do tamanho do bloco)
+        const baseTop = btns[0].offsetTop;
+
+        // Se houver qualquer botão posicionado abaixo da linha de base, temos um overflow
+        let hasOverflow = btns.some(btn => btn.offsetTop > baseTop + 5);
+
+        if (hasOverflow) {
+            badge.style.display = 'inline-flex';
+            let hiddenCount = 0;
+
+            // Oculta botões de trás para frente até o badge subir e caber perfeitamente na linha 1
+            for (let i = btns.length - 1; i >= 0; i--) {
+                btns[i].style.display = 'none';
+                hiddenCount++;
+                badge.textContent = `+${hiddenCount}`;
+
+                if (badge.offsetTop <= baseTop + 5) {
+                    break;
+                }
+            }
+        }
     });
 }
 
@@ -858,6 +885,10 @@ document.addEventListener('drop', e => {
 // ============================================================
 // INIT
 // ============================================================
+
+window.addEventListener('resize', () => {
+    requestAnimationFrame(updateAllOverflows);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     applyBackground();
