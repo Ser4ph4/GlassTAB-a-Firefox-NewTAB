@@ -435,7 +435,6 @@ body::before {
 .shortcut-btn:hover {
     background: rgba(255, 255, 255, 0.14);
     border-color: rgba(255, 255, 255, 0.22);
-    transform: translateY(-1px);
 }
 
 .shortcut-icon {
